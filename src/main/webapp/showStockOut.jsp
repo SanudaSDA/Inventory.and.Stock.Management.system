@@ -12,7 +12,7 @@
 <body class="bg-gray-50">
 <div class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold text-gray-800 mb-8">Stock Out Management</h1>
-
+<%--test--%>
     <div class="bg-white p-6 rounded-lg shadow-lg overflow-hidden w-full">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-xl font-semibold">Stock Out Items</h2>

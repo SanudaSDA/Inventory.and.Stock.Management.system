@@ -8,8 +8,7 @@
     <style>
         @media print {
             .no-print {
-                display: none;
-            }
+                display: none;            }
             body {
                 background: white;
             }

@@ -18,14 +18,10 @@ public class ItemsListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Load items from the catalog
+
         ItemCatalog catalog = new ItemCatalog();
         List<Item> items = catalog.getAllItems();
-
-        // Pass the item list to JSP
         request.setAttribute("itemsList", items);
-
-        // Forward to ItemsList.jsp
-        request.getRequestDispatcher("ItemsList.jsp").forward(request, response);
+        request.getRequestDispatcher("ItemsLists.jsp").forward(request, response);
     }
 }

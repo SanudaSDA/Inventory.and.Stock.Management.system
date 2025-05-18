@@ -22,7 +22,6 @@ public class EditItemServlet extends HttpServlet {
         String Date = request.getParameter("Date");
 
         Item updatedItem = new Item(itemName, price, itemId, category, "", supplierName, supplierContact, quantity);
-
         ItemCatalog catalog = new ItemCatalog();
         catalog.editItem(updatedItem);
 

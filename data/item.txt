@@ -1,2 +1,1 @@
-orange|1500.0|001|fruit||malith|0712555555|90
 orange|1500.0|007|fruit||malith|0712555555|90

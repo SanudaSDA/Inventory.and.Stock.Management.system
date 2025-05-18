@@ -22,6 +22,6 @@ public class ItemsListServlet extends HttpServlet {
         ItemCatalog catalog = new ItemCatalog();
         List<Item> items = catalog.getAllItems();
         request.setAttribute("itemsList", items);
-        request.getRequestDispatcher("ItemsLists.jsp").forward(request, response);
+        request.getRequestDispatcher("ItemsList.jsp").forward(request, response);
     }
 }

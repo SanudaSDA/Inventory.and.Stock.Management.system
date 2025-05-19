@@ -15,7 +15,7 @@ public class Product {
         return name + " | " + price + " | " + itemId;
     }
 
-    // Getters and setters
+    // Getters
     public String getName() {
         return name;
     }
@@ -28,6 +28,7 @@ public class Product {
         return itemId;
     }
 
+    // Setters
     public void setName(String name) {
         this.name = name;
     }

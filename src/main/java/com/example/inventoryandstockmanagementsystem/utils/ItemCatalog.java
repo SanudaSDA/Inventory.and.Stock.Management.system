@@ -6,7 +6,7 @@ import java.util.Stack;
 
 public class ItemCatalog {
 
-    private static final String FILE_PATH = "C:/Users/User/Desktop/neeeeeew/data/Item.txt";
+    private static final String FILE_PATH = "C:/Users/User/Desktop/neeeeeew/data/NewItems.txt";
 
 
     public Stack<Item> loadFromFile() {

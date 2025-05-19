@@ -1,3 +1,5 @@
+package com.example.inventoryandstockmanagementsystem;
+
 import com.example.inventoryandstockmanagementsystem.entities.Item;
 import com.example.inventoryandstockmanagementsystem.utils.ItemCatalog;
 import jakarta.servlet.ServletException;

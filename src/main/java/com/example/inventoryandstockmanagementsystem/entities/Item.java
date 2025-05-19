@@ -27,71 +27,67 @@ public class Item extends Product {
     }
 
     // Getters and setters
+    public String getCategory() {
+        return category;
+    }
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
     public String getSupplierName() {
         return supplierName;
     }
-
     public void setSupplierName(String supplierName) {
         this.supplierName = supplierName;
     }
-
     public String getSupplierContact() {
         return supplierContact;
     }
-
     public void setSupplierContact(String supplierContact) {
         this.supplierContact = supplierContact;
     }
-
     public int getQuantity() {
         return quantity;
     }
-
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    // toString for saving
+    // Converts Item object to string for saving to file
     @Override
     public String toString() {
-        return getName() + "|" + getPrice() + "|" + getItemId() + "|" + category + "|" + description + "|"
-                + supplierName + "|" + supplierContact + "|" + quantity;
+        return getName() + "|" + getPrice() + "|" + getItemId() + "|" + category + "|" + description + "|" +
+                supplierName + "|" + supplierContact + "|" + quantity;
     }
 
+    // Creates Item from saved string representation
     public static Item fromString(String str) {
         String[] parts = str.split("\\|");
         if (parts.length < 8) {
             throw new IllegalArgumentException("Invalid item string format");
         }
+        try {
+            String name = parts[0].trim();
+            double price = Double.parseDouble(parts[1].trim());
+            String itemId = parts[2].trim();
+            String category = parts[3].trim();
+            String description = parts[4].trim();
+            String supplierName = parts[5].trim();
+            String supplierContact = parts[6].trim();
+            int quantity = Integer.parseInt(parts[7].trim());
 
-        String name = parts[0];
-        double price = Double.parseDouble(parts[1]);
-        String itemId = parts[2];
-        String category = parts[3];
-        String description = parts[4];
-        String supplierName = parts[5];
-        String supplierContact = parts[6];
-        int quantity = Integer.parseInt(parts[7]);
-
-        return new Item(name, price, itemId, category, description, supplierName, supplierContact, quantity);
+            return new Item(name, price, itemId, category, description, supplierName, supplierContact, quantity);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Number format error in item string: " + e.getMessage());
+        }
     }
 
+    // Append this item to the file
     public void saveToFile(String filename) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true))) {
             writer.write(this.toString());

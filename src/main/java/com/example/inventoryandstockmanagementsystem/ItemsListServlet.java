@@ -18,10 +18,15 @@ public class ItemsListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
         ItemCatalog catalog = new ItemCatalog();
-        List<Item> items = catalog.getAllItems();
-        request.setAttribute("itemsList", items);
+        try {
+            List<Item> items = catalog.getAllItems();
+            request.setAttribute("itemsList", items);
+        } catch (NumberFormatException e) {
+            // If there's a parsing issue, forward an error message instead
+            request.setAttribute("errorMessage", "Error reading items: " + e.getMessage());
+        }
+
         request.getRequestDispatcher("ItemsList.jsp").forward(request, response);
     }
 }

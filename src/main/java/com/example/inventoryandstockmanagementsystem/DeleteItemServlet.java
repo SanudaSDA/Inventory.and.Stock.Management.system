@@ -18,11 +18,17 @@ public class DeleteItemServlet extends HttpServlet {
 
         String itemId = request.getParameter("id");
 
+        if (itemId == null || itemId.trim().isEmpty()) {
+            // No id provided, redirect with error message
+            response.sendRedirect("ItemsListServlet?message=Missing+item+ID!&type=error");
+            return;
+        }
+
         ItemCatalog catalog = new ItemCatalog();
 
         try {
             catalog.deleteItem(itemId);
-            response.sendRedirect("ItemsListServlet");
+            response.sendRedirect("ItemsListServlet?message=Item+deleted+successfully&type=success");
         } catch (IOException e) {
             e.printStackTrace();
             response.sendRedirect("ItemsListServlet?message=Error+deleting+item!&type=error");

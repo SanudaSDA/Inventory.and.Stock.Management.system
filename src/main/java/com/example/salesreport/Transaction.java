@@ -23,7 +23,7 @@ public class Transaction {
         this.id = id;
     }
 
-    // Getter methods
+    // Getter methods.
     public Date getDate() {
         return date;
     }

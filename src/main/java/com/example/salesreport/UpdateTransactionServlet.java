@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-//Servlet that handles POST requests to update an existing transaction.
+//Servlet that handles POST requests to update an existing transaction..
 //This servlet assumes that a list of Transaction objects is stored in the ServletContext.
 @WebServlet("/updateTransaction")
 public class UpdateTransactionServlet extends HttpServlet {

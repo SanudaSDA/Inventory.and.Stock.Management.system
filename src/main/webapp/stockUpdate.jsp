@@ -22,6 +22,10 @@
       background-color: #0dcaf0;
       color: white;
     }
+    .btn-delete {
+      background-color: #dc3545;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -73,7 +77,7 @@
             <th>Value</th>
             <th>Delivery Date</th>
             <th>Expiry Date</th>
-
+            <th>Action</th>
           </tr>
           </thead>
           <tbody>
@@ -88,9 +92,16 @@
             <td><%= item.getQuantity() %></td>
             <td>Rs. <%= String.format("%.2f", item.getPrice()) %></td>
             <td>Rs. <%= String.format("%.2f", item.getQuantity() * item.getPrice()) %></td>
-            <td><%= item.getDescription() %></td> <!-- deliveryDate (using description) -->
+            <td><%= item.getDescription() %></td> <!-- deliveryDate -->
             <td><%= item.getExpiryDate() %></td>
-
+            <td>
+              <form action="DeleteItemServlet" method="post" onsubmit="return confirm('Are you sure you want to delete this item?')">
+                <input type="hidden" name="itemId" value="<%= item.getItemId() %>">
+                <button type="submit" class="btn btn-delete btn-sm">
+                  <i class="bi bi-trash"></i> Delete
+                </button>
+              </form>
+            </td>
           </tr>
           <%
             }

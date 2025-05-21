@@ -1,11 +1,11 @@
 package com.example.inventoryandstockmanagementsystem.entities;
 
-public class Product {
-    private String name;
-    private double price;
-    private String itemId;
+public class AddProduct {
+    protected String name;
+    protected double price;
+    protected String itemId;
 
-    public Product(String name, double price, String itemId) {
+    public AddProduct(String name, double price, String itemId) {
         this.name = name;
         this.price = price;
         this.itemId = itemId;

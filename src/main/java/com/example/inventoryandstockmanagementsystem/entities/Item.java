@@ -4,7 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Item extends Product {
+public class Item extends AddProduct {
     private String category;
     private String description;
     private String supplierName;
@@ -58,14 +58,14 @@ public class Item extends Product {
         this.quantity = quantity;
     }
 
-    // Converts Item object to string for saving to file
+
     @Override
     public String toString() {
         return getName() + "|" + getPrice() + "|" + getItemId() + "|" + category + "|" + description + "|" +
                 supplierName + "|" + supplierContact + "|" + quantity;
     }
 
-    // Creates Item from saved string representation
+
     public static Item fromString(String str) {
         String[] parts = str.split("\\|");
         if (parts.length < 8) {

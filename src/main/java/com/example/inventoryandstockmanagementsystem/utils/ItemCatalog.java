@@ -48,7 +48,7 @@ public class ItemCatalog {
 
     public void deleteItem(String itemId) throws IOException {
         Stack<Item> items = getAllItems();
-        items.removeIf(item -> item.getItemId().equals(itemId));  // Works since Stack extends Vector
+        items.removeIf(item -> item.getItemId().equals(itemId));
         saveAllItems(items);
     }
 

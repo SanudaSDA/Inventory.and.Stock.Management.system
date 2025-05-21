@@ -36,26 +36,39 @@ public class UpdateStockServlet extends HttpServlet {
 
             catalog.editItem(item);
 
-            // Retrieve all items using the custom ItemStack
-            ItemStack itemStack = catalog.loadStack();
-            Item[] items = itemStack.getAll();
-
-            // Sort items by expiry date
-            MergeSortUtil.sortByExpiryDate(items, 0, items.length - 1);
-
-            // Set attributes and forward to JSP
-            request.setAttribute("items", items);
-            request.setAttribute("message", "Stock updated successfully");
-            request.setAttribute("type", "success");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("stockUpdate.jsp");
-            dispatcher.forward(request, response);
+            // Reload and display updated item list
+            loadAndForwardItems(request, response, "Stock updated successfully", "success");
 
         } else {
-            // Item not found, forward with error message
-            request.setAttribute("message", "Item not found");
-            request.setAttribute("type", "error");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("stockUpdate.jsp");
-            dispatcher.forward(request, response);
+            loadAndForwardItems(request, response, "Item not found", "error");
         }
     }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Allow redirect to this servlet from delete
+        loadAndForwardItems(request, response, null, null);
+    }
+
+    private void loadAndForwardItems(HttpServletRequest request, HttpServletResponse response, String message, String type)
+            throws ServletException, IOException {
+
+        ItemCatalog catalog = new ItemCatalog();
+        ItemStack itemStack = catalog.loadStack();
+        Item[] items = itemStack.getAll();
+
+        MergeSortUtil.sortByExpiryDate(items, 0, items.length - 1);
+
+        request.setAttribute("items", items);
+
+        if (message != null && type != null) {
+            request.setAttribute("message", message);
+            request.setAttribute("type", type);
+        }
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("stockUpdate.jsp");
+        dispatcher.forward(request, response);
+    }
 }
+

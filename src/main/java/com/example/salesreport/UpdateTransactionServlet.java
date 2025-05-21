@@ -10,15 +10,20 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+//Servlet that handles POST requests to update an existing transaction.
+//This servlet assumes that a list of Transaction objects is stored in the ServletContext.
 @WebServlet("/updateTransaction")
 public class UpdateTransactionServlet extends HttpServlet {
+
+    //Handles POST requests to update a transaction's details (quantity, revenue, margin).
+    //It identifies the transaction using its date and category (or later with a unique ID).
 
     @SuppressWarnings("unchecked")
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // In a real app, you would retrieve the data from a database or shared memory
+        // // Retrieve the shared transaction list from the application context (ServletContext)
         List<Transaction> transactions = (List<Transaction>) getServletContext().getAttribute("transactions");
 
         try {

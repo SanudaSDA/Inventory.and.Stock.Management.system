@@ -2,6 +2,9 @@ package com.example.salesreport;
 
 import java.util.Date;
 
+//The Transaction class represents a single sales transaction.
+// It holds information like date, category, quantity sold, revenue, margin, and a unique ID.
+
 public class Transaction {
     private Date date;
     private String category;
@@ -10,7 +13,7 @@ public class Transaction {
     private double margin;
     private int id;
 
-    // Constructor
+    // Constructor to initialize all above properties
     public Transaction(Date date, String category, int quantity, double revenue, double margin,int id) {
         this.date = date;
         this.category = category;

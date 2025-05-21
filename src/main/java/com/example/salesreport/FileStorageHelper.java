@@ -11,9 +11,11 @@ public class FileStorageHelper {
         try (ObjectInputStream ois = new ObjectInputStream(
                 new FileInputStream(FILE_PATH))) {
             return (List<Transaction>) ois.readObject();
-        } catch (FileNotFoundException e) {
+        }
+        catch (FileNotFoundException e) {
             return new ArrayList<>(); // Return empty list if file doesn't exist
-        } catch (IOException | ClassNotFoundException e) {
+        }
+        catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             return new ArrayList<>();
         }

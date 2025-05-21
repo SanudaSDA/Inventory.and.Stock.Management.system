@@ -1,33 +1,32 @@
+//loads data and forwards to JSP
+//it reads from ServletContext(data store), calculates stats, and forwards to JSP.
 package com.example.salesreport;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.annotation.WebServlet;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
+
 
 @WebServlet("/dashboard")
 public class DashboardServlet extends HttpServlet {
-    private List<Transaction> transactions;
-
-    @Override
-    public void init() throws ServletException {
-        // Dummy data for demo purposes
-        transactions = new ArrayList<>();
-        transactions.add(new Transaction(new Date(), "Electronics", 5, 2500.00, 20.5,1));
-        transactions.add(new Transaction(new Date(), "Clothing", 10, 1000.00, 15.0,2));
-        transactions.add(new Transaction(new Date(), "Accessories", 3, 600.00, 25.0,3));
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+
+
+        List<Transaction> transactions = (List<Transaction>)getServletContext().getAttribute("transactions");
+
+
+
         double totalSales = transactions.stream().mapToDouble(Transaction::getRevenue).sum();
         double avgTransaction = totalSales / transactions.size();
         int transactionCount = transactions.size();
-        double revenueGrowth = 5.2; // Static or calculated value
+        double revenueGrowth = 5.2; // Optional: dynamic logic later
 
         request.setAttribute("transactions", transactions);
         request.setAttribute("totalSales", totalSales);
@@ -35,7 +34,7 @@ public class DashboardServlet extends HttpServlet {
         request.setAttribute("transactionCount", transactionCount);
         request.setAttribute("revenueGrowth", revenueGrowth);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("dashboard.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("sales.jsp");
         dispatcher.forward(request, response);
     }
 }

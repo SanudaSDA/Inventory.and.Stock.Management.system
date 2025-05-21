@@ -1,20 +1,14 @@
 package com.example.salesreport;
 
-import java.util.Date;
-
-//The Transaction class represents a single sales transaction.
-// It holds information like date, category, quantity sold, revenue, margin, and a unique ID.
-
 public class Transaction {
-    private Date date;
+    private String date;
     private String category;
     private int quantity;
     private double revenue;
     private double margin;
     private int id;
 
-    // Constructor to initialize all above properties
-    public Transaction(Date date, String category, int quantity, double revenue, double margin,int id) {
+    public Transaction(String date, String category, int quantity, double revenue, double margin, int id) {
         this.date = date;
         this.category = category;
         this.quantity = quantity;
@@ -23,8 +17,8 @@ public class Transaction {
         this.id = id;
     }
 
-    // Getter methods.
-    public Date getDate() {
+    // Getter methods
+    public String getDate() {
         return date;
     }
 
@@ -49,7 +43,7 @@ public class Transaction {
     }
 
     // Setter methods
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -68,6 +62,7 @@ public class Transaction {
     public void setMargin(double margin) {
         this.margin = margin;
     }
+
     public void setId(int id) {
         this.id = id;
     }

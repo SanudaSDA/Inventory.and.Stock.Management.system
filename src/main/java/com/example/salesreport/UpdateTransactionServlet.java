@@ -1,24 +1,23 @@
-//it updates the in-memory list and redirects back.
 package com.example.salesreport;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/updateTransaction")
 public class UpdateTransactionServlet extends HttpServlet {
-
-    @SuppressWarnings("unchecked")
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Transaction> transactions = (List<Transaction>) getServletContext().getAttribute("transactions");
+        // Get transactions from ServletContext
+        List<Transaction> transactions =
+                (List<Transaction>) getServletContext().getAttribute("transactions");
 
         try {
+            // Parse form data
             int id = Integer.parseInt(request.getParameter("id"));
             String date = request.getParameter("date");
             String category = request.getParameter("category");
@@ -26,6 +25,7 @@ public class UpdateTransactionServlet extends HttpServlet {
             double revenue = Double.parseDouble(request.getParameter("revenue"));
             double margin = Double.parseDouble(request.getParameter("margin"));
 
+            // Update the transaction
             for (Transaction tx : transactions) {
                 if (tx.getId() == id) {
                     tx.setDate(date);
@@ -37,10 +37,15 @@ public class UpdateTransactionServlet extends HttpServlet {
                 }
             }
 
+
+
         } catch (Exception e) {
             e.printStackTrace();
+            request.getSession().setAttribute("error", "Update failed: " + e.getMessage());
         }
 
+        // Redirect back to dashboard
+        FileStorageHelper.saveTransactions(transactions);
         response.sendRedirect("dashboard");
     }
 }

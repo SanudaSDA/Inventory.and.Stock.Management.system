@@ -13,7 +13,7 @@ import java.util.List;
 public class DataStoreServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
-        List<Transaction> transactions = new ArrayList<>();
+        List<Transaction> transactions = FileStorageHelper.loadTransactions();
 
         transactions.add(new Transaction("2023-05-01", "Electronics", 20, 5000.0, 1200.0, 1));
         transactions.add(new Transaction("2023-05-03", "Clothing", 35, 3000.0, 800.0, 2));

@@ -17,8 +17,7 @@ public class UpdateTransactionServlet extends HttpServlet {
             throws ServletException, IOException {
 
         // Get transactions from ServletContext
-        List<Transaction> transactions =
-                (List<Transaction>) getServletContext().getAttribute("transactions");
+        List<Transaction> transactions = (List<Transaction>) getServletContext().getAttribute("transactions");
 
         try {
             // Parse(convert a String into another data type) form data( Get form data from the request)

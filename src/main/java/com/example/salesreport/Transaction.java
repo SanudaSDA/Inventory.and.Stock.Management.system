@@ -1,5 +1,11 @@
 package com.example.salesreport;
+
+//shows a single transaction record. It stores and access data related to a sales transaction.
 import java.io.Serializable;
+
+//Serializable is a marker interface (no methods) that allows instances of this class to be saved to  file.
+//Required for Java object serialization using ObjectOutputStream and ObjectInputStream
+
 public class Transaction implements Serializable{
     private String date;
     private String category;
@@ -8,6 +14,7 @@ public class Transaction implements Serializable{
     private double margin;
     private int id;
 
+    //constructor to initialize properties
     public Transaction(String date, String category, int quantity, double revenue, double margin, int id) {
         this.date = date;
         this.category = category;

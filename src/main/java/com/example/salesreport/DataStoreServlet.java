@@ -12,7 +12,7 @@ import java.util.List;
 @WebServlet(name = "DataStoreServlet", urlPatterns = {}, loadOnStartup = 1)
 public class DataStoreServlet extends HttpServlet {
     @Override
-    //hide complex internal details and show only essential behavior(init())
+    //hide complex internal details and show only essential behavior(init())-ABSTRACTION
     public void init() throws ServletException {//Initializes transaction data
         List<Transaction> transactions = FileStorageHelper.loadTransactions();
 
